@@ -1,6 +1,6 @@
-#include "linear.h"
-#include "types.h"
-#include "search.h"
+#include "lib/linear.h"
+#include "lib/types.h"
+#include "lib/search.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,7 +21,7 @@ int main()
     Size indexMin = 0;
     for (Size i = 0; i < vec->m; i++)
     {
-        printf("%d: %d\n", i, vec->value[i]);
+        printf("0x%x: %d\n", i, vec->value[i]);
 
         if (vec->value[i] < min)
         {
