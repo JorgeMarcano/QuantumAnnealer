@@ -1,1 +1,1 @@
-gcc main.c linear.c types.c -o annealer.exe
+gcc main.c linear.c types.c search.c -o annealer.exe

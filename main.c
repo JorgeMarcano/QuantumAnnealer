@@ -1,5 +1,6 @@
 #include "linear.h"
 #include "types.h"
+#include "search.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,26 +15,22 @@ int main()
     mat->value[2] = 0;
     mat->value[3] = -3;
 
-    Vector* vec = malloc(sizeof(Vector));
-    vec->value = malloc(2 * sizeof(Val));
-    vec->m = 2;
-    Val* tempVal = NULL;
+    Vector* vec = searchSpace(mat);
+
     Val min = 0;
-    for (Size i = 0; i < 4; i++)
+    Size indexMin = 0;
+    for (Size i = 0; i < vec->m; i++)
     {
-        vec->value[0] = i / 2;
-        vec->value[1] = i % 2;
+        printf("%d: %d\n", i, vec->value[i]);
 
-        tempVal = xQx(mat, vec);
-        printf("%d: %d\n", i, *tempVal);
-
-        if (*tempVal < min)
-            min = *tempVal;
-
-        delVal(tempVal);
+        if (vec->value[i] < min)
+        {
+            min = vec->value[i];
+            indexMin = i;
+        }
     }
 
-    printf("\nThe minimum found was %d\n", min);
+    printf("\nThe minimum found was in state 0x%x, with a value of %d\n", indexMin, min);
 
     delVec(vec);
     delMat(mat);
